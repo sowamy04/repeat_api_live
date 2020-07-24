@@ -47,4 +47,15 @@ class ProfilRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByProfil($value){
+        return $this->createQueryBuilder('u')
+            ->innerJoin('u.profil','p')
+            ->andWhere('p.libelle= :val')
+            ->setParameter('val', $value)
+            ->orderBy('u.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
